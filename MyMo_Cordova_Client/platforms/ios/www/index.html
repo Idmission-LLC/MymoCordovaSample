@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <!--   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <!--   <link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <title>MyMo</title>
+</head>
+<body>
+
+<div class="center">
+    <div id="deviceready" style="display:none;">
+           <p class="event listening">Connecting to Device</p>
+           <p class="event received">Device is Ready</p>
+       </div>
+       <!--<p onclick="callMyMo()"> mymo buttn </p>-->
+       <h2 style="color:#008080">MyMo Cordova Sample App</h2>
+       <p><a href="#" onclick="enableMyMoInSettings()" style="color: #ec0400;">Enable MyMo in Settings</a></p>
+       <p style=" font-size: 14px; color: darkgrey;">Allow full access</p>
+    <!--    <p><a href="#" onclick="selectKeyboardOptions()" style="color: #ec0400;">Select MyMo as the default keyboard</a></p>-->
+       <p>Long press the globe icon(bottom-left) in keyboard and select MyMo keyboard as default</p>
+    <button class="button buttonGrey" onclick="enableDisableBtnClick()" id="enableDisableBtnTxt">ENABLE MYMO</button><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="phNo" name="phNo" placeholder="Enter Phone Number e.g 744636363" value="88776659"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="senderName" name="senderName" placeholder="Enter Sender Name" value="Amol"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="custCode" name="custCode" placeholder="Enter Customer ID e.g 47390 " value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="idNumber" name="idNumber" placeholder="Enter ID Number e.g 08011986 " value="0801198502598"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="countryCode" name="countryCode" placeholder="Enter Country Code" value="United States"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="currencyCode" name="currencyCode" placeholder="Enter Currency Code" value="HNL"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="currencySymbol" name="currencySymbol" placeholder="Enter Currency Symbol" value="$"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="loginId" name="loginId" placeholder="Enter LoginId" value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="password" name="password" placeholder="Enter Password" value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="merchantId" name="merchantId" placeholder="Enter MerchantId" value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="minAmt" name="minAmt" placeholder="Enter Minimum Amount" value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="maxAmt" name="maxAmt" placeholder="Enter Maximum Amount" value=""><br><br>
+<!--    <input type="text"  style="width:80%;height:30px;" id="locale" name="locale" placeholder="Enter Locale" value="en_US"><br><br>-->
+    <input type="text"  style="width:80%;height:30px;" id="postURL" name="postURL" placeholder="Enter URL" value="https://demo.idmission.com/IDS/service/ids/"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="bankUserName" name="bankUserName" placeholder="Enter Bank User Name" value="Amol"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="branchCode" name="branchCode" placeholder="Enter Branch Code" value="HDFC"><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="bnkAcc" name="bnkAcc" placeholder="Enter Bank Account No" value="9100008854"><br><br>
+    <select style="width: 80%;height:30px;" class="form-control " id="banksdropdown" name="banksdropdown" >
+         <option value="Default">Default</option>
+         <option value="Current">Current</option>
+         <option value="Savings">Savings</option>
+    </select>
+    <br><br>
+    <!--<input type="text"  style="width:80%;height:30px;" id="txnSecurity" name="txnSecurity" placeholder="Enter Txn Security (Y/N)" value="Y"><br><br>-->
+    <input type="text"  style="width:80%;height:30px;" id="additionaInformation" name="additionaInformation" placeholder="Enter additionaInformation" value=""><br><br>
+    <input type="text"  style="width:80%;height:30px;" id="recPhoneSecurity" name="recPhoneSecurity" placeholder="Enter Receiver Phone (Y/N)" value="N"><br><br>
+    
+    <p style=" font-size: 14px; color: darkgrey;">Receiver Phone Length Configuration</p>
+    <input type="text"  style="width:80%;height:30px;" id="phoneLength" name="phoneLength" placeholder="Enter Receiver Phone Length" value="8"><br><br>
+
+    <p style=" font-size: 14px; color: darkgrey;" >Choose transaction security : </p>
+     <input type="radio" checked name="tranSec" id="NoSec" value="NoSec" onclick="showNoDiv()">
+     <label style=" font-size: 14px; " for="NoSec">No Security</label>
+     <input type="radio" name="tranSec" id="otpSec" value="otpSec" onclick="showOtpDiv()">
+     <label style=" font-size: 14px; " for="otpSec">Otp Security</label>
+     <input type="radio" name="tranSec" id="pinSec" value="pinSec" onclick="showPinDiv()">
+     <label  style=" font-size: 14px; " for="pinSec">Pin Security</label>
+    <br><br>
+
+     <div id="showPinDiv" style="display:none;">
+         <input type="text" readonly style="width:80%;height:30px;" id="txnSecurityPin" name="txnSecurityPin" placeholder="Enter Pin Security (Y/N)" value="N"><br><br>
+         <input type="text" style="width:80%;height:30px;" id="PinValidateAtIDM" name="PinValidateAtIDM" placeholder="Enter pin validate at : BANK or IDM" value="BANK"><br><br>
+         <input type="text" style="width:80%;height:30px;" id="customerSecurityPin" name="customerSecurityPin" placeholder="Enter Pin number here" value="1234"><br><br>
+         <p style=" font-size: 14px; color: darkgrey;">Pin Length Configuration</p>
+         <input type="text"  style="width:80%;height:30px;" id="customerPinLength" name="customerPinLength" placeholder="Enter Pin Length" value="4"><br><br>
+
+     </div>
+    <div id="showOtpDiv" style="display:none;">
+        <input type="text" readonly style="width:80%;height:30px;" id="txnSecurity" name="txnSecurity" placeholder="Enter Txn Security (Y/N)" value="N"><br><br>
+    </div>
+    <div id="showNoDiv" style="display:none;">
+        <input type="text" readonly style="width:80%;height:30px;" id="noSecurity" name="noSecurity" placeholder="Enter Txn Security (Y/N)" value="Y"><br><br>
+    </div>
+
+    <p style=" font-size: 16px; color: darkgrey;">Icon Configurations</p>
+    <input type="file" id="mymo" name="mymo" accept="image/*" onchange="readImageFile(this,'mymoIconBase','mymoIcon');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >MyMo Icon</label>
+    <p id="mymoIconBase" style="display:none;"></p>
+    <img id="mymoIcon">
+    <br><br>
+   <!-- <input type="file" id="sendMoneyIcon" name="sendMoneyIcon" accept="image/*" onchange="readImageFile(this,'sendMoneyBase','sendMoneyIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Send Money Icon</label>
+    <p id="sendMoneyBase" style="display:none;"></p>
+    <img id="sendMoneyIconImg">
+    <br><br>
+    <input type="file" id="atmIcon" name="atmIcon" accept="image/*" onchange="readImageFile(this,'atmBase','atmIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;">Send to ATM Icon</label>
+    <p id="atmBase" style="display:none;"></p>
+    <img id="atmIconImg">
+    <br><br>
+    <input type="file" id="histIcon"  name="histIcon" accept="image/*" onchange="readImageFile(this,'histBase','histIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;">History Icon</label>
+    <p id="histBase" style="display:none;"></p>
+    <img id="histIconImg">
+    <br><br>
+    <input type="file" id="payIcon"  name="payIcon" accept="image/*" onchange="readImageFile(this,'payIconBase','payIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Pay Icon</label>
+    <p id="payIconBase" style="display:none;"></p>
+    <img id="payIconImg">
+    <br><br>-->
+    <input type="file" id="arrowIcon"  name="arrowIcon" accept="image/*" onchange="readImageFile(this,'arrowIconBase','arrowIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Down Arrow Icon</label>
+    <p id="arrowIconBase" style="display:none;"></p>
+    <img id="arrowIconImg">
+
+    <br><br>
+    <input type="file" id="txnSuccessIcon"  name="txnSuccessIcon" accept="image/*" onchange="readImageFile(this,'txnSuccessIconBase','txnSuccessIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Txn Success Icon</label>
+    <p id="txnSuccessIconBase" style="display:none;"></p>
+    <img id="txnSuccessIconImg">
+    <br><br>
+    <input type="file" id="alertIcon"  name="alertIcon" accept="image/*" onchange="readImageFile(this,'alertIconBase','alertIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Alert Icon</label>
+    <p id="alertIconBase" style="display:none;"></p>
+    <img id="alertIconImg">
+    <br><br>
+    <input type="file" id="contactIcon"  name="contactIcon" accept="image/*" onchange="readImageFile(this,'contactIconBase','contactIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Contact Icon</label>
+    <p id="contactIconBase" style="display:none;"></p>
+    <img id="contactIconImg">
+    <br><br>
+    <input type="file" id="processingIcon"  name="arrowIcon" accept="image/*" onchange="readImageFile(this,'processingIconBase','processingIconImg');" style="width: 85px;"/>
+    <label style="margin-right: 20px;" >Processing Icon</label>
+    <p id="processingIconBase" style="display:none;"></p>
+    <img id="processingIconImg">
+
+    <br><br>
+    <p style=" font-size: 16px; color: darkgrey;">Color Configurations</p>
+    <label style=" font-size: 14px; color: darkgrey;">Text color(ex. 'c92d64')</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textColor" name="textColor" placeholder="Enter text Phone color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Header & Pay Button text color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="headerPayTxtClr" name="headerPayTxtClr" placeholder="Enter header and pay button text color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Header & Pay Button Background color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="headerPayBackClr" name="headerPayBackClr" placeholder="Enter header and pay background color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">EditBox background color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="editBoxBackClr" name="editBoxBackClr" placeholder="Enter editBox background color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">History Header Background Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="histHeaderBackClr" name="histHeaderBackClr" placeholder="Enter history header background color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Transaction Success Text Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="txnSuccessTxtClr" name="txnSuccessTxtClr" placeholder="Enter transaction success text color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Transaction Success Amount Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="txnSuccessAmountTxtClr" name="txnSuccessAmountTxtClr" placeholder="Enter transaction success amount color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Alert Text Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="alertTxtClr" name="alertTxtClr" placeholder="Enter alert text color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Calender Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="calandarBtnTxtClr" name="calandarBtnTxtClr" placeholder="Enter calender button color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Load More Text Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="loadMoreBtnTxtClr" name="loadMoreBtnTxtClr" placeholder="Enter load more text color" value=""><br><br>
+
+    <p style=" font-size: 16px; color: darkgrey;">Color Configurations : Confirm Transaction Popup</p>
+    <label style=" font-size: 14px; color: darkgrey;">Confirm TXN Yes Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="confirmTxnYesBtnClr" name="confirmTxnYesBtnClr" placeholder="Enter confirm txn yes button color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Confirm TXN No Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="confirmTxnNoBtnClr" name="confirmTxnNoBtnClr" placeholder="Enter confirm txn no button color" value=""><br><br>
+
+    <p style=" font-size: 16px; color: darkgrey;">Color Configurations : Cancel Transaction Popup</p>
+    <label style=" font-size: 14px; color: darkgrey;">Close Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="closeBtnClr" name="closeBtnClr" placeholder="Enter close button color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">Confirm Cancel Txn Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="confirmCancelTxnBtnClr" name="confirmCancelTxnBtnClr" placeholder="Enter confirm cancel txn button color" value=""><br><br>
+
+    <p style=" font-size: 16px; color: darkgrey;">Color Configurations : Confirm Cancel Transaction Popup</p>
+    <label style=" font-size: 14px; color: darkgrey;">Yes Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="confirmCancelYesBtnClr" name="confirmCancelYesBtnClr" placeholder="Enter confirm cancel yes button color" value=""><br><br>
+    <label style=" font-size: 14px; color: darkgrey;">No Button Color</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="confirmCancelNoBtnClr" name="confirmCancelNoBtnClr" placeholder="Enter confirm cancel no button color" value=""><br><br>
+
+    <p style=" font-size: 16px; color: darkgrey;">Label Configurations </p>
+<label style=" font-size: 14px; color: darkgrey;">Send Money Label</label><br>
+<input type="text"  style="width:80%;height:30px;" id="sendMoneyLbl" name="sendMoneyLbl" placeholder="Enter Send Money Label" value=""><br><br>
+<label style=" font-size: 14px; color: darkgrey;">Send to ATM Label</label><br>
+<input type="text"  style="width:80%;height:30px;" id="atmLbl" name="atmLbl" placeholder="Enter ATM Label" value=""><br><br>
+<label style=" font-size: 14px; color: darkgrey;">History Label</label><br>
+<input type="text"  style="width:80%;height:30px;" id="historyLbl" name="historyLbl" placeholder="Enter History Label" value=""><br><br>
+<label style=" font-size: 14px; color: darkgrey;">Pay Label</label><br>
+<input type="text"  style="width:80%;height:30px;" id="payLbl" name="payLbl" placeholder="Enter History Label" value=""><br><br>
+<label style=" font-size: 14px; color: darkgrey;">Transaction Success Message</label><br>
+<input type="text"  style="width:80%;height:30px;" id="TransactionSuccessLbl" name="TransactionSuccessLbl" placeholder="Transaction Success Message Label" value="You sent:"><br><br>
+
+
+      <p style=" font-size: 16px; color: darkgrey;"> Error Messages Configurations </p>
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode016</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode016" name="textOfErrorCode016"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode224</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode224" name="textOfErrorCode224"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode236</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode236" name="textOfErrorCode236"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode358</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode358" name="textOfErrorCode358"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode370</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode370" name="textOfErrorCode370"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode428</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode428" name="textOfErrorCode428"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">textOfErrorCode501</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode501" name="textOfErrorCode501"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode604</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode604" name="textOfErrorCode604"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode888</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode888" name="textOfErrorCode888"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode999</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode999" name="textOfErrorCode999"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode1003</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode1003" name="textOfErrorCode1003"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2054</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2054" name="textOfErrorCode2054"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2071</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2071" name="textOfErrorCode2071"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2077</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2077" name="textOfErrorCode2077"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2080</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2080" name="textOfErrorCode2080"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2082</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2082" name="textOfErrorCode2082"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2084</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2084" name="textOfErrorCode2084"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2086</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2086" name="textOfErrorCode2086"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2087</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2087" name="textOfErrorCode2087"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode2589</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode2589" name="textOfErrorCode2589"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode5000</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode5000" name="textOfErrorCode5000"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode5010</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode5010" name="textOfErrorCode5010"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfErrorCode3059</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfErrorCode3059" name="textOfErrorCode3059"  value=""><br><br>
+
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation001</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation001" name="textOfValidation001"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation002</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation002" name="textOfValidation002"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation003</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation003" name="textOfValidation003"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation004</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation004" name="textOfValidation004"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation005</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation005" name="textOfValidation005"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation006</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation006" name="textOfValidation006"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation007</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation007" name="textOfValidation007"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation008</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation008" name="textOfValidation008"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation009</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation009" name="textOfValidation009"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation011</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation011" name="textOfValidation011"  value=""><br><br>
+
+    <label style=" font-size: 14px; color: darkgrey;">TextOfValidation012</label><br>
+    <input type="text"  style="width:80%;height:30px;" id="textOfValidation012" name="textOfValidation012"  value=""><br><br>
+
+
+
+    <!--  <p style=" font-size: 14px;">OUTPUT</p>
+      <input type="text"  style="width:80%;height:35px;" id="output" name="output"><br><br>-->
+
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/mymo.js"></script>
+
+<style>
+            .center {
+             text-align: center;
+            }
+
+            .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
+
+            .buttonGrey {background-color: #e7e7e7; color: black;}
+
+        </style>
+</body>
+</html>
+
